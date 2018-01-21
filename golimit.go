@@ -52,3 +52,8 @@ func (l GoLimit) Wait() {
 	// allow new go by empty channel
 	l.Add(len(l.c) * -1)
 }
+
+// Running return the number of running goroutine
+func (l GoLimit) Running() int {
+	return len(l.c)
+}
