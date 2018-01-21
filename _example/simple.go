@@ -1,14 +1,3 @@
-# Go Limit
-
-Limit the maximum number of goroutines running at the same time.
-
-## Install
-```
-$ go get -u github.com/lenaten/go-limit
-```
-
-## Usage
-```go
 package main
 
 import (
@@ -36,5 +25,3 @@ func main() {
 	// Wait for all functions to complete.
 	l.Wait()
 }
-
-```
