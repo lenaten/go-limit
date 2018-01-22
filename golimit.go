@@ -6,13 +6,13 @@ package golimit
 // Then each of the goroutines runs and calls Done when finished.
 // At the same time, Wait can be used to block until all goroutines have finished.
 type GoLimit struct {
-	c chan bool
+	c chan struct{}
 }
 
 // New create a new Golimit with max concurrency number.
 func New(max int) *GoLimit {
 	return &GoLimit{
-		c: make(chan bool, max),
+		c: make(chan struct{}, max),
 	}
 }
 
@@ -30,7 +30,7 @@ func New(max int) *GoLimit {
 func (l GoLimit) Add(delta int) {
 	if delta > 0 {
 		for i := 0; i < delta; i++ {
-			l.c <- true
+			l.c <- struct{}{}
 		}
 	}
 	if delta < 0 {
